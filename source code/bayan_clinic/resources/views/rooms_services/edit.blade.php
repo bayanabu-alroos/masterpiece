@@ -129,7 +129,7 @@
 
                         <div class="row gx-3 ">
                             <!-- Form Group (first name)-->
-                            <div class="col-md-8  mb-2">
+                            {{-- <div class="col-md-8  mb-2">
                                 <label class="small mb-1" for="inputFirstName">Select Name Service</label>
                                 
                                 <select name="service_id" class="form-control">
@@ -137,7 +137,7 @@
                                         <option value="{{$service->id}}">{{$service->name_service}}</option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div> --}}
                             <!-- Form Group (last name)-->
                             <div class="col-md-6 mb-2">
                               

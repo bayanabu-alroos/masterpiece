@@ -11,6 +11,7 @@ class Session extends Model
 
     protected $fillable = [
     'service_id',
+    'room_id',
     'name_session',
     'cost_session',
     'detail_session',
@@ -19,5 +20,9 @@ class Session extends Model
 
     public function services(){
         return $this->belongsTo(Service::class ,'service_id','id');
+    }
+
+    public function rooms(){
+        return $this->belongsTo(Room::class ,'room_id','id');
     }
 }

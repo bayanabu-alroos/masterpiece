@@ -18,9 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')
                 ->constrained('users')
                 ->onDelete('cascade');
-            $table->foreignId('service_id')
-                ->constrained('services')
-                ->onDelete('cascade');
+           
             // $table->string('number_rooms_service', 100);
             $table->string('name_room', 100);
             $table->string('status', 100)-> default("available");            

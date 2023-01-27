@@ -63,7 +63,7 @@
                 <th>Image</th>
                 <th>Name Room</th>
                 <th>Nurse </th>
-                <th>Name Service </th>
+                {{-- <th>Name Service </th> --}}
                 <th>Role User</th>
                 <th>Status</th>
                 <th scope="col" width="15%" colspan="3">Action</th>
@@ -75,7 +75,7 @@
                 <td><img src="/images/{{ $room->image  }}" width="100px" height="100px"></td>
                 <td>{{ $room->name_room }}</td>
                 <td>{{ $room->firstname }}  {{ $room->lastname }}</td>
-                <td>{{ $room->name_service }}  </td>
+                {{-- <td>{{ $room->name_service }}  </td> --}}
                 <td>{{ $room->level }}</td>
                 <td >
                   {{-- <span class="btn btn-sm bg-success-light"> --}}

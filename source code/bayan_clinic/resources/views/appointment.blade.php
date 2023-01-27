@@ -111,7 +111,7 @@
                         <form action="{{ route('appointment.store') }}"method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row g-3">
-                                <div class="col-12 col-sm-4">
+                                {{-- <div class="col-12 col-sm-4">
                                     <label class="float-start text-light">Select  service</label>
                                     <select id="service" class="form-select bg-light border-0" style="height: 55px;">
                                         <option value=""> Select Service</option>
@@ -119,29 +119,28 @@
                                                 <option value="{{$list ->id}}">{{$list ->name_service }}</option>
                                             @endforeach
                                     </select>
-                                </div>
-                                <div class="col-12 col-sm-4">
+                                </div> --}}
+                                {{-- <div class="col-12 col-sm-4">
                                     <label class="float-start text-light">Select  room service</label>
                                     <select id="room" class="form-select bg-light border-0" name="rooms_id" style="height: 55px;">
                                         <option value=""> Select Room</option>
                                     </select>
-                                </div>
-                                <div class="col-12 col-sm-4">
+                                </div> --}}
+                                {{-- <div class="col-12 col-sm-4">
                                     <label class="float-start text-light">Select  session service</label>
                                     <select id="session" class="form-select bg-light border-0" name="sessions_id" style="height: 55px;">
                                         <option value=""> Select Session </option>
                                     </select>
-                                    {{-- <input type="text" class="form-control bg-light border-0" placeholder="Your Name" style="height: 55px;"> --}}
-                                </div>
-                                <div class="col-12 col-sm-6">
+                                </div> --}}
+                                {{-- <div class="col-12 col-sm-6">
                                     <label class="float-start text-light">Name </label>
-                                    <input type="text" class="form-control bg-light border-0" placeholder="Name" name="user_id"value="{{ auth()->user()->firstname }} {{ auth()->user()->lastname }}" style="height: 55px;">
-                                </div>
-                                <div class="col-12 col-sm-6">
+                                    <input type="text" type="hidden" class="form-control bg-light border-0" placeholder="Name" name="user_id"value="{{ auth()->user()->id }}" style="height: 55px;">
+                                </div> --}}
+                                <div class="col-12 col-sm-12">
                                     <div class="date" id="date1" data-target-input="nearest">
                                         <label class="float-start text-light">Select date appointment session </label>
                                         <input type="date" class="form-control bg-light border-0 datetimepicker-input" name="date_appointment"
-                                            placeholder="Appointment Date" data-target="#date1" data-toggle="datetimepicker" style="height: 55px;">
+                                            placeholder="Appointment Date"   style="height: 55px;">
                                             @error('date_appointment')
                                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                             @enderror
@@ -151,7 +150,7 @@
                                     <div class="time" id="time1" data-target-input="nearest">
                                         <label class="float-start text-light">Select start time session </label>
                                         <input type="time" class="form-control bg-light border-0 datetimepicker-input" name="start_time"
-                                            placeholder="Appointment Time" data-target="#time1" data-toggle="datetimepicker" style="height: 55px;">
+                                            placeholder="Appointment Time" style="height: 55px;">
                                             @error('start_time')
                                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                             @enderror
@@ -161,7 +160,7 @@
                                     <div class="time" id="time1" data-target-input="nearest">
                                         <label class="float-start text-light">Select end time Session </label>
                                         <input type="time" class="form-control bg-light border-0 datetimepicker-input" name="end_time"
-                                            placeholder="Appointment Time" data-target="#time1" data-toggle="datetimepicker" style="height: 55px;">
+                                            placeholder="Appointment Time" style="height: 55px;">
                                             @error('end_time')
                                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                             @enderror

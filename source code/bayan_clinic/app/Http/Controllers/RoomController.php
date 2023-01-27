@@ -21,8 +21,7 @@ class RoomController extends Controller
 
         $rooms = DB::table('rooms')
             ->join('users', 'rooms.user_id', '=', 'users.id')
-            ->join('services', 'rooms.service_id', '=', 'services.id')
-            ->select('rooms.*', 'users.firstname', 'users.lastname', 'users.level','services.name_service')
+            ->select('rooms.*', 'users.firstname', 'users.lastname', 'users.level')
             ->get();
 
         return view('rooms_services.index', ['rooms' => $rooms])
@@ -37,8 +36,8 @@ class RoomController extends Controller
     public function create()
     {
         $users = DB::select('select * from users WHERE level="nurse" OR level="doctor"');
-        $services = Service::all();
-        return view('rooms_services.create',compact('users','services'));
+        // $services = Service::all();
+        return view('rooms_services.create',compact('users'));
     }
 
     /**
@@ -50,7 +49,7 @@ class RoomController extends Controller
     public function store(Request $request)
     {
         $user = User::findOrFail($request->user_id);
-        $service = Service::findOrFail($request->service_id);
+        // $service = Service::findOrFail($request->service_id);
 
         $request->validate([
             'name_room'=> 'required',
@@ -95,11 +94,11 @@ class RoomController extends Controller
     public function edit($id)
     {
         $users = DB::select('select * from users WHERE level="nurse" OR level="doctor"');
-        $services = Service::all();
+        // $services = Service::all();
         $rooms = Room::find($id);
         return view('rooms_services.edit', [
             'users'=>$users,
-            'services'=>$services,
+            // 'services'=>$services,
             'rooms'=>$rooms,
         ]);
     }
@@ -118,7 +117,7 @@ class RoomController extends Controller
             'name_room'=> 'required',
             'status'=> 'required',
             'user_id' => 'required',
-            'service_id'=> 'required',
+            // 'service_id'=> 'required',
             'image' => 'required',
 
         ]);
@@ -133,7 +132,7 @@ class RoomController extends Controller
         $room = Room::find($id);
         // $devices->number_rooms_service = $request->number_rooms_service;
         $room->user_id= $request->user_id;
-        $room->service_id= $request->service_id;
+        // $room->service_id= $request->service_id;
         $room->name_room = $request->name_room;
         $room->status = $request->status;
 

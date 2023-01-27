@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Session;
 use App\Models\Service;
+use App\Models\Room;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,9 @@ class SessionController extends Controller
     {
         $sessions = DB::table('sessions')
         ->join('services', 'sessions.service_id', '=', 'services.id')
-        ->select('sessions.*', 'services.name_service')
+        ->join('rooms', 'sessions.room_id', '=', 'rooms.id')
+
+        ->select('sessions.*', 'services.name_service','rooms.name_room')
         ->get();
     
         return view('sessions.index', ['sessions' => $sessions])
@@ -35,7 +38,8 @@ class SessionController extends Controller
     public function create()
     {
         $services = Service::all();
-        return view('sessions.create',compact('services'));
+        $rooms = DB::select('select * from rooms WHERE status="available"');
+        return view('sessions.create',compact('services', 'rooms'));
 
     }
 
@@ -48,6 +52,7 @@ class SessionController extends Controller
     public function store(Request $request)
     {
         $service = Service::findOrFail($request->service_id);
+        $room = Room::findOrFail($request->room_id);
 
         $request->validate([
             'name_session'=> 'required',
@@ -57,14 +62,7 @@ class SessionController extends Controller
         
         $input = $request->all();
         
-        // if ($image = $request->file('image')) {
-        //     $destinationPath = 'images/';
-        //     $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-        //     $image->move($destinationPath, $profileImage);
-        //     $input['image'] = "$profileImage";
-        // }else{
-        //     unset($input['image']);
-        // }
+    
         
         Session::create($input);
         
@@ -94,10 +92,12 @@ class SessionController extends Controller
     {
 
         $services = Service::all();
+        $rooms = DB::select('select * from rooms WHERE status="available"');
         $session = Session::find($id);
         return view('sessions.edit', [
             'services'=>$services,
             'session'=>$session,
+            'rooms'=>$rooms,
 
         ]);
     }
@@ -116,22 +116,18 @@ class SessionController extends Controller
             'cost_session'=> 'required',
             'detail_session'=> 'required',
             'service_id'=> 'required',
-
+            'room_id'=> 'required',
         ]);
 
 
 
-        // if ($request->image != "") {
-        //     $room_image = time() . '.' . request()->image->getClientOriginalExtension();
-        //     request()->image->move(public_path('images'), $room_image);
-        // } else {
-        //     $room_image = $request->hidden_img;
-        // }
+ 
 
 
         $session = Session::find($id);
         $session->name_session = $request->name_session;
         $session->service_id = $request->service_id;
+        $session->room_id = $request->room_id;
         $session->cost_session = $request->cost_session;
         $session->detail_session = $request->detail_session;
 

@@ -97,6 +97,27 @@
                             </div>
                             
                         </div>
+
+                        <div class="row gx-3 ">
+                          <!-- Form Group (first name)-->
+                          <div class="col-md-6  mb-2">
+                              <label class="small mb-1" for="inputFirstName">Select Name Service</label>
+                              
+                              <select name="room_id" class="form-control text-black">
+                                  @foreach ($rooms as $room)
+                                      <option class="text-black" value="{{$room->id}}">{{$room->name_room}}</option>
+                                  @endforeach
+                              </select>
+                          </div>
+                                
+
+                          <!-- Form Group (last name)-->
+                          <div class="col-md-6 mb-2">
+                             
+
+                          </div>
+                          
+                      </div>
                         <!-- Form Row        -->
 
                         <div class="row gx-3 ">

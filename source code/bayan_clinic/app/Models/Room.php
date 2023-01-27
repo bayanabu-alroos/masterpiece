@@ -11,7 +11,7 @@ class Room extends Model
 
     protected $fillable = [
         'user_id',
-        'service_id',
+        // 'service_id',
         'name_room',
         'status',
         'image'
@@ -19,9 +19,5 @@ class Room extends Model
 
     public function users(){
         return $this->belongsTo(User::class ,'user_id','id');
-    }
-
-    public function services(){
-        return $this->belongsTo(Service::class ,'service_id','id');
     }
 }

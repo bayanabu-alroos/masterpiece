@@ -78,13 +78,16 @@ Route::resource('services', ServiceController::class);
 
 // Route::resource('appointment', RoomlistingController::class);
 
-Route::get('/appointment',[AppointmentController::class,'index']);
-Route::post('get-room',[AppointmentController::class,'getRoom']);
-Route::post('get-session',[AppointmentController::class,'getSession']);
-Route::post('/appointment', [AppointmentController::class, 'store'])->name('appointment.store');
+// Route::get('/appointment',[AppointmentController::class,'create']);
+// Route::post('get-room',[AppointmentController::class,'getRoom']);
+// Route::post('get-session',[AppointmentController::class,'getSession']);
 
 // Route::resource('appointment', Website::class);
-// Route::resource('appointment', WebsiteController::class);
+// Route::resource('/appointment', AppointmentController::class);
+// Route::post('/store',[AppointmentController::class,'store'])->name('store');
+// Route::post('/appointment', [AppointmentController::class, 'store'])->name('appointment.store');
+
+
 
 
 
@@ -97,6 +100,8 @@ Route::resource('rooms_services', RoomController::class);
 
 
 });
+
+
 
 //// route users
 
@@ -132,6 +137,7 @@ Route::get('service', [ServiceController::class,'show']);
 Route::get('about', [HomeController::class,'show']);
 
 
+Route::resource('appointment', AppointmentController::class);
 
 
 // Route::get('/rooms', [RoomlistingController::class, 'index'])->name('room');

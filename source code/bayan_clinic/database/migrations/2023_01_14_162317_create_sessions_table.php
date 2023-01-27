@@ -18,6 +18,9 @@ return new class extends Migration
             $table->foreignId('service_id')
                 ->constrained('services')
                 ->onDelete('cascade');
+            $table->foreignId('room_id')
+                ->constrained('rooms')
+                ->onDelete('cascade');
             $table->string('name_session', 100);
             $table->string('cost_session', 100);
             // $table->string('offers_service', 100);

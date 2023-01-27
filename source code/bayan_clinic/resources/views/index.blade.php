@@ -153,7 +153,7 @@
 <!-- Full Screen Search End -->
 
 <!-- Start Small Features Area -->
-<section class="small-features">
+{{-- <section class="small-features">
 <div class="container">
 <div class="inner-content">
     <div class="row">
@@ -204,7 +204,7 @@
     </div>
 </div>
 </div>
-</section>
+</section> --}}
 <!-- End Small Features Area -->
 
 
