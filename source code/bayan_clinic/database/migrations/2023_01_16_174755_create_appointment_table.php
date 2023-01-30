@@ -15,6 +15,15 @@ return new class extends Migration
     {
         Schema::create('appointment', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->onDelete('cascade');
+            $table->foreignId('room_id')
+                ->constrained('rooms')
+                ->onDelete('cascade');
+            $table->foreignId('session_id')
+                ->constrained('sessions')
+                ->onDelete('cascade');
             $table->date('date_appointment');
             $table->time('start_time');
             $table->time('end_time');

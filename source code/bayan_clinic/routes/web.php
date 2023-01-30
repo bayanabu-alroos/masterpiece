@@ -48,7 +48,6 @@ Route::get('/processLogout',[LoginController::class, 'processLogout'])->name('pr
 Route::get('/register',[RegisterController::class,'showRegister'])->name('register');
 Route::post('/processRegister',[RegisterController::class,'processRegister'])->name('processRegister');
 
-// Route::get('/dashboard',[ContactUsFormController::class,'index'] )->name('dashboard');
 
 
 Route::get('/contact', [ContactUsFormController::class, 'createForm']);
@@ -75,19 +74,7 @@ Route::any('/users', [UserController::class, 'index'])->name('user');
 
 Route::resource('services', ServiceController::class);
 
-
-// Route::resource('appointment', RoomlistingController::class);
-
-// Route::get('/appointment',[AppointmentController::class,'create']);
-// Route::post('get-room',[AppointmentController::class,'getRoom']);
-// Route::post('get-session',[AppointmentController::class,'getSession']);
-
-// Route::resource('appointment', Website::class);
-// Route::resource('/appointment', AppointmentController::class);
-// Route::post('/store',[AppointmentController::class,'store'])->name('store');
-// Route::post('/appointment', [AppointmentController::class, 'store'])->name('appointment.store');
-
-
+Route::post('store/', [RoomlistingController::class, 'store'])->name('store');
 
 
 
@@ -96,34 +83,15 @@ Route::resource('sessions',SessionController::class);
 
 Route::resource('rooms_services', RoomController::class);
 
-
+Route::get('changePassword', [ChangePasswordController::class,'index']);
+Route::post('changePassword', [ChangePasswordController::class ,'store'])->name('change.password');
 
 
 });
 
 
 
-//// route users
 
-
-
-
-
-
-
-
-
-
-
-
-// Route::delete('/{device}/force-delete', [DeviceController::class , 'forceDelete']);
-
-
-
-
-
-Route::get('changePassword', [ChangePasswordController::class,'index']);
-Route::post('changePassword', [ChangePasswordController::class ,'store'])->name('change.password');
 
 
 Route::get('blogs', [BlogController::class,'viewblog']);
@@ -137,11 +105,20 @@ Route::get('service', [ServiceController::class,'show']);
 Route::get('about', [HomeController::class,'show']);
 
 
-Route::resource('appointment', AppointmentController::class);
 
 
-// Route::get('/rooms', [RoomlistingController::class, 'index'])->name('room');
-// Route::any('/rooms', [RoomlistingController::class, 'index'])->name('room');
+
+
+
+
+
+Route::get('/rooms', [RoomlistingController::class,'index'] )->name('room');
+
+Route::any('/rooms', [RoomlistingController::class, 'index'])->name('room');
+
+Route::get('/show_room/{room}/', [RoomlistingController::class, 'show'])->name('show_room');
+
+
 
 
 

@@ -8,7 +8,7 @@
                     <a href="http://127.0.0.1:8000/" class="nav-item nav-link active">Home</a>
                     <a href="http://127.0.0.1:8000/about" class="nav-item nav-link">About</a>
                     <a href="http://127.0.0.1:8000/service" class="nav-item nav-link">Services</a>
-                    {{-- <a href="http://127.0.0.1:8000/rooms" class="nav-item nav-link ">Rooms</a> --}}
+                    <a href="http://127.0.0.1:8000/rooms" class="nav-item nav-link ">Rooms</a>
                     <a href="http://127.0.0.1:8000/blogs" class="nav-item nav-link ">Blogs</a>
                     <a href="http://127.0.0.1:8000/contact" class="nav-item nav-link mx-4">Contact</a>
 

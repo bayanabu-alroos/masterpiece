@@ -151,6 +151,17 @@
 
                 @endif
 
+
+                <li class="sidebar-item">
+                  <a
+                    class="sidebar-link waves-effect waves-dark sidebar-link"
+                    href="http://127.0.0.1:8000/appointment"
+                    aria-expanded="false"
+                    ><i class="fas fa-calendar-alt"></i>
+                      <span class="hide-menu">Appointment</span></a
+                  >
+                </li>
+
                 {{-- @if(\Illuminate\Support\Facades\Auth::user()->level ==2)
 
                 <li class="sidebar-item">

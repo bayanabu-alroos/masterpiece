@@ -23,21 +23,20 @@ class RoomlistingController extends Controller
      */
     public function index(Request $request)
     {
-        $rooms = DB::select('SELECT rooms.*, users.firstname,users.lastname,users.level,services.name_service FROM ((rooms INNER JOIN users ON     rooms.user_id = users.id) INNER JOIN services ON rooms.service_id = services.id) WHERE status = "available"');
+        $rooms = DB::select('SELECT rooms.*, users.firstname,users.lastname,users.level FROM (rooms INNER JOIN users ON rooms.user_id = users.id) WHERE status = "available"');
         $search = $request->q;
         if($search!=""){
             
             $rooms = Room::where(function ($query) use ($search){
                 $query->Where('name_room', 'like', '%'.$search.'%')
-                ->orWhere('service_id', 'like', '%'.$search.'%')
-                ->orWhere('user_id', 'like', '%'.$search.'%');
+                    ->orWhere('user_id', 'like', '%'.$search.'%');
 
             })
             ->paginate(2);
             $rooms->appends(['q' => $search]);
         }
         else{
-            $rooms = DB::select('SELECT rooms.*, users.firstname,users.lastname,users.level, services.name_service FROM ((rooms INNER JOIN users ON rooms.user_id = users.id) INNER JOIN services ON rooms.service_id = services.id) WHERE status = "available"');
+            $rooms = DB::select('SELECT rooms.*, users.firstname,users.lastname,users.level FROM (rooms INNER JOIN users ON rooms.user_id = users.id) WHERE status = "available"');
         }
 
             return view('rooms', ['rooms' => $rooms
@@ -55,9 +54,10 @@ class RoomlistingController extends Controller
      */
     public function create()
     {
-        $rooms = DB::select('SELECT rooms.*, users.firstname,users.lastname,users.level,services.name_service FROM ((rooms INNER JOIN users ON  rooms.user_id = users.id) INNER JOIN services ON rooms.service_id = services.id) WHERE status = "available"');
-        $sessions = DB::select('SELECT sessions.*,services.name_service FROM (sessions  INNER JOIN services ON sessions.service_id = services.id) WHERE service_id = service_id ');
-        return view('appointment.create',['rooms' => $rooms, 'sessions'=>$sessions]);
+      
+
+        return view('show-room',compact('sessions', 'rooms','user'));
+
     }
 
     /**
@@ -68,9 +68,27 @@ class RoomlistingController extends Controller
      */
     public function store(Request $request)
     {
-        $room =  Room::findOrFail($request->rooms_id);
-        $session =  Session::findOrFail($request->sessions_id);
-        $user = Auth::user($request->user_id);
+        $user = User::findOrFail($request->user_id);
+        $room = Room::findOrFail($request->room_id);	 
+        $session = Room::findOrFail($request->session_id);
+
+        $request->validate([
+            'date_appointment'=> 'required',
+            'start_time'=> 'required|date_format:H:i',
+            'end_time' => 'required|after:start_time|date_format:H:i',
+        ]);
+            $appointment = new Appointment;
+            $appointment->user_id = $request->user_id;
+            $appointment->room_id = $request->room_id;
+            $appointment->session_id = $request->session_id;
+            $appointment->date_appointment = $request->date_appointment;
+            $appointment->start_time = $request->start_time;
+            $appointment->end_time = $request->end_time;
+
+          
+            $appointment->save();
+            return redirect()->route('home')
+            ->with('success','We have received your appointment and would like to thank you for your confidence in us.');
     }
 
     /**
@@ -79,10 +97,21 @@ class RoomlistingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Room $rooms)
-    {
-        return view('appointment.create',compact('rooms','sessions'));
-    }
+    
+    
+    public function show(Room $room){
+
+        // $sessions = Session::all();
+        $sessions = Session::select('sessions.*')
+            ->join('rooms', 'rooms.id', '=', 'sessions.room_id')
+            ->join('services', 'services.id', '=', 'sessions.service_id')
+            ->where('rooms.id', $room->id)
+            ->get();
+
+        $user = Auth::user();
+        return view('show-room',compact('sessions', 'room','user'));
+}
+
 
     /**
      * Show the form for editing the specified resource.

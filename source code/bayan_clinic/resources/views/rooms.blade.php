@@ -139,12 +139,12 @@
                                         <small class="me-3"><i class="far fa-user me-2 text-primary"></i>  {{ $room->level }}  </small>
 
                                     </div>
-                                    <p class="mb-2">{{ $room->name_service}}</p>
+                                    {{-- <p class="mb-2">{{ $room->name_service}}</p> --}}
 
                                     <p class="mb-2">{{ $room->name_room }}</p>
 
                                     {{-- <a class="text-uppercase" href="">Read More <i class="bi bi-arrow-right"></i></a> --}}
-                                    <a href="{{ route('appointment.create',$room->id) }}" class="btn  btn-opacity-75 mt-2 me-3 animated slideInLeft text-white" style="background-color:#9b4abb ;">Make Appointment</a>
+                                    <a href="{{ route('show_room', $room->id) }}" class="btn  btn-opacity-75 mt-2 me-3 animated slideInLeft text-white" style="background-color:#9b4abb ;">Make Appointment</a>
                                 </div>
                             </div>
                         </div>
