@@ -31,7 +31,10 @@
                 >
               </li>
 
-              @if(\Illuminate\Support\Facades\Auth::user()->level == 'admin'  || 'reception' ||'doctor')
+              @if(\Illuminate\Support\Facades\Auth::user()->level == 'admin')
+              @if(\Illuminate\Support\Facades\Auth::user()->level == 'reception')
+              @if(\Illuminate\Support\Facades\Auth::user()->level == 'doctor')
+
 
               <li class="sidebar-item">
                 <a
@@ -58,9 +61,8 @@
 
                 </ul>
               </li>
-              @endif
+             
 
-              @if(\Illuminate\Support\Facades\Auth::user()->level == 'admin'  || 'reception'||'doctor')
 
               <li class="sidebar-item">
                 <a
@@ -88,9 +90,14 @@
                 </ul>
               </li>
               @endif
+              @endif
+              @endif
 
 
-              @if(\Illuminate\Support\Facades\Auth::user()->level == 'admin'  || 'reception'||'doctor')
+
+
+              @if(\Illuminate\Support\Facades\Auth::user()->level == 'admin' )
+              @if(\Illuminate\Support\Facades\Auth::user()->level == 'doctor')
 
               <li class="sidebar-item">
                 <a
@@ -120,9 +127,14 @@
                 </ul>
               </li>
               @endif
+              @endif
 
 
-              @if(\Illuminate\Support\Facades\Auth::user()->level == 'admin'  || 'reception'||'doctor')
+
+              @if(\Illuminate\Support\Facades\Auth::user()->level == 'admin')
+              @if(\Illuminate\Support\Facades\Auth::user()->level == 'reception')
+              @if(\Illuminate\Support\Facades\Auth::user()->level == 'doctor')
+
 
                 <li class="sidebar-item">
                   <a
@@ -150,7 +162,12 @@
                 </li>
 
                 @endif
+                @endif
+                @endif
 
+
+
+                @if(\Illuminate\Support\Facades\Auth::user()->level == "patient")
 
                 <li class="sidebar-item">
                   <a
@@ -161,6 +178,27 @@
                       <span class="hide-menu">Appointment</span></a
                   >
                 </li>
+
+                @endif
+
+
+                @if(\Illuminate\Support\Facades\Auth::user()->level == 'admin')
+                @if(\Illuminate\Support\Facades\Auth::user()->level == 'reception')
+                @if(\Illuminate\Support\Facades\Auth::user()->level == 'doctor')
+                <li class="sidebar-item">
+                  <a
+                    class="sidebar-link waves-effect waves-dark sidebar-link"
+                    href="http://127.0.0.1:8000/appointments"
+                    aria-expanded="false"
+                    ><i class="fas fa-calendar-alt"></i>
+                      <span class="hide-menu">Appointment</span></a
+                  >
+                </li>
+
+                @endif
+                @endif
+                @endif
+
 
                 {{-- @if(\Illuminate\Support\Facades\Auth::user()->level ==2)
 
@@ -186,7 +224,8 @@
 
                 @endif --}}
 
-                @if(\Illuminate\Support\Facades\Auth::user()->level == 'admin'  || 'doctor')
+                @if(\Illuminate\Support\Facades\Auth::user()->level == 'admin')
+                @if(\Illuminate\Support\Facades\Auth::user()->level == 'doctor')
 
               <li class="sidebar-item">
                 <a
@@ -214,6 +253,8 @@
                 </ul>
               </li>
               @endif
+              @endif
+
               {{-- <li class="sidebar-item">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"

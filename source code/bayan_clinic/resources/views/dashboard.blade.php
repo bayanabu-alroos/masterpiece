@@ -53,6 +53,7 @@
               <div class="box bg-success text-center">
                 <h1 class="font-light text-white">
                   <i class="mdi mdi-chart-areaspline"></i>
+                  {{\DB::table('users')->where('users.level', '=' ,'doctor')->count()}}
                 </h1>
                 <h6 class="text-white">Charts</h6>
               </div>

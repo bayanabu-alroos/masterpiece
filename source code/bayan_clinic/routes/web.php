@@ -110,6 +110,10 @@ Route::get('about', [HomeController::class,'show']);
 
 
 
+Route::get('/appointment', [RoomlistingController::class,'indexs'] );
+Route::get('/appointments', [RoomlistingController::class,'appointment'] );
+
+Route::delete('/{appointment}',[RoomlistingController::class,'destroy'])->name('destroy');
 
 
 Route::get('/rooms', [RoomlistingController::class,'index'] )->name('room');

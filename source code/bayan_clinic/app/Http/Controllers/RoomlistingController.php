@@ -119,9 +119,46 @@ class RoomlistingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function indexs(Request $request)
     {
-        //
+        $user = Auth::user();
+
+        $appointments =  DB::table('appointment')
+            ->join('users', 'appointment.user_id', '=', 'users.id')
+            ->join('sessions','appointment.session_id', '=','sessions.id')
+            ->join('rooms', 'appointment.room_id' , '=', 'rooms.id')
+            ->select('appointment.*','rooms.name_room','sessions.name_session', 'sessions.cost_session')
+            ->where('users.id', $user->id)
+            ->get();
+
+
+
+
+        return view('appointment', ['appointments' => $appointments ,'user'=>$user])
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+
+    
+
+    }
+
+    public function appointment(Request $request)
+    {
+
+        $appointments =  DB::table('appointment')
+            ->join('users', 'appointment.user_id', '=', 'users.id')
+            ->join('sessions','appointment.session_id', '=','sessions.id')
+            ->join('rooms', 'appointment.room_id' , '=', 'rooms.id')
+            ->select('appointment.*','rooms.name_room','sessions.name_session', 'sessions.cost_session','users.firstname','users.lastname')
+            ->get();
+
+
+
+
+        return view('appointments', ['appointments' => $appointments ])
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+
+    
+
     }
 
     /**
@@ -144,6 +181,8 @@ class RoomlistingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $userDestroy = Appointment::find($id);
+        $userDestroy->destroy($id);
+        return back()->with ('success', ' Make Appointment force deleted successfully.');
     }
 }

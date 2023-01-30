@@ -1,248 +1,198 @@
-@extends('layout.master')
+@extends('layout.masterdash')
+
+
 
 @section('content')
+@if(\Illuminate\Support\Facades\Auth::user()->level == "patient")
 
-{{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" > --}}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<div class="collapse navbar-collapse" id="navbarCollapse">
-    <div class="navbar-nav ms-auto py-0">
-        <a href="http://127.0.0.1:8000/" class="nav-item nav-link active">Home</a>
-        <a href="http://127.0.0.1:8000/about" class="nav-item nav-link">About</a>
-        <a href="http://127.0.0.1:8000/service" class="nav-item nav-link">Services</a>
-        {{-- <a href="http://127.0.0.1:8000/rooms" class="nav-item nav-link ">Rooms</a> --}}
-        <a href="http://127.0.0.1:8000/blogs" class="nav-item nav-link ">Blogs</a>
-        <a href="http://127.0.0.1:8000/contact" class="nav-item nav-link mx-4">Contact</a>
-
-        {{-- <div class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                    class="fa fa-user-tie me-2"></i></a>
-            <div class="dropdown-menu m-0">
-                <a href="http://127.0.0.1:8000/register" class="dropdown-item">Sign up</a>
-                <hr class="dropdown-divider">
-                <a href="http://127.0.0.1:8000/login" class="dropdown-item">Login</a>
-            </div>
-        </div> --}}
+<div class="page-wrapper">
+  <!-- ============================================================== -->
+  <!-- Bread crumb and right sidebar toggle -->
+  <!-- ============================================================== -->
+  <div class="page-breadcrumb">
+    <div class="row">
+      <div class="col-12 d-flex no-block align-items-center">
+        <h4 class="page-title">Appointment</h4>
+        <div class="ms-auto text-end">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Appointment
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
     </div>
+  </div>
+  <!-- ============================================================== -->
+  <!-- End Bread crumb and right sidebar toggle -->
+  <!-- ============================================================== -->
+  <!-- ============================================================== -->
+  <!-- Container fluid  -->
+  <!-- ============================================================== -->
+  <div class="container-fluid">
+    
+    
 
-    <div class="nav-item dropdown text-info  me-5">
-        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-            <i class="fa fa-user-tie me-2"></i>
-        </a>
-        <div class="dropdown-menu m-0">
-    <!-- Authentication Links -->
-    @guest
-    @if (Route::has('login'))
-        <li class="nav-item">
-            <a class="nav-link " href="{{ route('login') }}">{{ __('Login') }}</a>
-        </li>
-    @endif
+    
+  <div class="card">
+      <div class="card-header">
 
-    @if (Route::has('register'))
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-        </li>
-    @endif
+      <div class="card-body">
+        @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+        @endif
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered table-dark table-striped table-hover">
+              <tr>
+                <th width="70px">#</th>
+                
+                <th>Name Room</th>
+                <th>Name Session</th>
+                <th>Cost Session</th>
+                <th>Data Appointment </th>
+                <th>Start Session</th>
+                <th>End Session</th>
+
+                <th scope="col" width="15%" colspan="3">Action</th>
+              </tr>
+              @foreach ($appointments as $appointment)
+              
+              <tr>
+                <td>{{ ++$i }}</td>
+                <td>{{ $appointment->name_room}}</td>
+                <td>{{ $appointment->name_session }}</td>
+                <td>{{ $appointment->cost_session }} JOD</td>
+                <td>{{ $appointment->date_appointment}}</td>
+                <td>{{ $appointment->start_time}}</td>
+                <td>{{ $appointment->end_time}}</td>
+
+                
+
+                
+                <td>
+                    <form action="{{ route('destroy',$appointment->id) }}" method="Post">
+                        {{-- <a class="btn btn-info" href="{{ route('services.show',$service->id) }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                            </svg>
+                        </a> --}}
+                        {{-- <a class="btn btn-primary" href="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                            </svg>
+                        </a> --}}
+        
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                  </svg>
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h1 class="modal-title fs-5  text-dark"  id="exampleModalLabel  ">Delete Blog </h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                      </div>
+                                      <div class="modal-body text-dark">
+                                        Are you sure delete ????
+                                      </div>
+                                      <div class="modal-footer">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Yes</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                        
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                </form>
+                              </td>
+                            
+                          
+                          
+                          
+                      </tr>
+  
+                  @endforeach
+
+          </table>
+          {{-- {!! $services->links() !!} --}}
+
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
 @else
-<li class="nav-item dropdown">
-
-
-    <a class="dropdown-item" href="http://127.0.0.1:8000/home"><i class="mdi mdi-account me-1 ms-1"></i> My Profile</a>
-    <a class="dropdown-item" href="http://127.0.0.1:8000/appointment"> Make Appointment</a>
-
-    
-    <a class="dropdown-item" href="{{route('processLogout')}}" class="text-body ms-0">
-        <i class="fa fa-power-off me-1 ms-1"></i>
-        Log Out
-    </a>
-    
-  </li>
-@endguest
-
-</div>
-</div>
-{{-- <a href="http://127.0.0.1:8000/appointment" class="btn btn btn-opacity-75 py-2 px-4 mb-1 ms-3 text-white" style="background-color:#9b4abb ;">Make Appointment</a> --}}
-
-</div>
-</div>
-</nav>
-
-<div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
-<div class="row py-5">
-    <div class="col-12 pt-lg-5 mt-lg-5 text-center">
-        <h1 class="display-4 text-white animated zoomIn">Appointment</h1>
-        <a href="" class="h5 text-white">Home</a>
-        <i class="far fa-circle text-white px-2"></i>
-        <a href="appointment.html" class="h5 text-white">Appointment</a>
+<div class="main-wrapper">
+  <!-- ============================================================== -->
+  <!-- Preloader - style you can find in spinners.css -->
+  <!-- ============================================================== -->
+  <div class="preloader">
+    <div class="lds-ripple">
+      <div class="lds-pos"></div>
+      <div class="lds-pos"></div>
     </div>
-</div>
-</div>
-</div>
-
-
-<div class="container">
-<div class="row">
-    <div class="col-xl-8 mx-auto">
-        <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-            <h2 class="fw-bold text-primary text-uppercase">Make Appointment</h2>
-            <h3 class="mb-0 mt-4">We have the right solutions for your skin, book your appointment</h3>
-        </div>
+  </div>
+  <!-- ============================================================== -->
+  <!-- Preloader - style you can find in spinners.css -->
+  <!-- ============================================================== -->
+  <!-- ============================================================== -->
+  <!-- Login box.scss -->
+  <!-- ============================================================== -->
+  <div class="error-box">
+    <div class="error-body text-center">
+      <h1 class="error-title text-danger">403</h1>
+      <h3 class="text-uppercase error-subtitle">PAGE NOT FOUND !</h3>
+      <p class="text-muted mt-4 mb-4">
+        YOU SEEM TO BE TRYING TO FIND HIS WAY HOME
+      </p>
+      {{-- <a
+        href="index.html"
+        class="
+          btn btn-danger btn-rounded
+          waves-effect waves-light
+          mb-5
+          text-white
+        "
+        >Back to home</a
+      > --}}
     </div>
-</div>
-</div>
-
-
-
-    <!-- Appointment Start -->
-    <div class="container-fluid  bg-appointment mb-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container">
-            <div class="row gx-5">
-                <div class="col-lg-4 py-5">
-                    <div class="py-5">
-                        <h1 class="display-5  mb-4">Opening Hours</h1>
-                        <div class="d-flex justify-content-between  mb-3">
-                            <h6 class=" mb-0">Every Day </h6>
-                            <p class="mb-0"> 8:00 AM - 8:00 PM</p>
-                        </div>
-                        
-                    </div>
-                </div>
-                <div class="col-lg-8 ">
-                    <div class="appointment-form bg-primary h-100 d-flex flex-column justify-content-center text-center p-5 wow zoomIn" data-wow-delay="0.6s">
-                        <form action="{{ route('appointment.store') }}"method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="row g-3">
-                                {{-- <div class="col-12 col-sm-4">
-                                    <label class="float-start text-light">Select  service</label>
-                                    <select id="service" class="form-select bg-light border-0" style="height: 55px;">
-                                        <option value=""> Select Service</option>
-                                            @foreach($services as $list)
-                                                <option value="{{$list ->id}}">{{$list ->name_service }}</option>
-                                            @endforeach
-                                    </select>
-                                </div> --}}
-                                {{-- <div class="col-12 col-sm-4">
-                                    <label class="float-start text-light">Select  room service</label>
-                                    <select id="room" class="form-select bg-light border-0" name="rooms_id" style="height: 55px;">
-                                        <option value=""> Select Room</option>
-                                    </select>
-                                </div> --}}
-                                {{-- <div class="col-12 col-sm-4">
-                                    <label class="float-start text-light">Select  session service</label>
-                                    <select id="session" class="form-select bg-light border-0" name="sessions_id" style="height: 55px;">
-                                        <option value=""> Select Session </option>
-                                    </select>
-                                </div> --}}
-                                {{-- <div class="col-12 col-sm-6">
-                                    <label class="float-start text-light">Name </label>
-                                    <input type="text" type="hidden" class="form-control bg-light border-0" placeholder="Name" name="user_id"value="{{ auth()->user()->id }}" style="height: 55px;">
-                                </div> --}}
-                                <div class="col-12 col-sm-12">
-                                    <div class="date" id="date1" data-target-input="nearest">
-                                        <label class="float-start text-light">Select date appointment session </label>
-                                        <input type="date" class="form-control bg-light border-0 datetimepicker-input" name="date_appointment"
-                                            placeholder="Appointment Date"   style="height: 55px;">
-                                            @error('date_appointment')
-                                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                                            @enderror
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <div class="time" id="time1" data-target-input="nearest">
-                                        <label class="float-start text-light">Select start time session </label>
-                                        <input type="time" class="form-control bg-light border-0 datetimepicker-input" name="start_time"
-                                            placeholder="Appointment Time" style="height: 55px;">
-                                            @error('start_time')
-                                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                                            @enderror
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <div class="time" id="time1" data-target-input="nearest">
-                                        <label class="float-start text-light">Select end time Session </label>
-                                        <input type="time" class="form-control bg-light border-0 datetimepicker-input" name="end_time"
-                                            placeholder="Appointment Time" style="height: 55px;">
-                                            @error('end_time')
-                                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                                            @enderror
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn btn-dark w-100 py-3" type="submit">Make Appointment</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Appointment End -->
-
-{{-- <select id="service">
-    <option value=""> Select Service</option>
-    @foreach($services as $list)
-        <option value="{{$list ->id}}">{{$list ->name_service }}</option>
-    @endforeach
-</select>
-
-<select id="room">
-    <option value=""> Select Room</option>
-</select>
-
-
-<select id="session">
-    <option value=""> Select Session </option>
-</select> --}}
-
-
+  </div>
+  <!-- ============================================================== -->
+  <!-- Login box.scss -->
+  <!-- ============================================================== -->
+  <!-- ============================================================== -->
+  <!-- Page wrapper scss in scafholding.scss -->
+  <!-- ============================================================== -->
+  <!-- ============================================================== -->
+  <!-- Page wrapper scss in scafholding.scss -->
+  <!-- ============================================================== -->
+  <!-- ============================================================== -->
+  <!-- Right Sidebar -->
+  <!-- ============================================================== -->
+  <!-- ============================================================== -->
+  <!-- Right Sidebar -->
+  <!-- ============================================================== -->
 </div>
 
+@endif
 
-<script>
-    $(document).ready(function() {
-    $('#service').on('change', function() {
-    var service_id = this.value;
-    $("#room").html('');
-    $.ajax({
-    url:"{{url('get-room')}}",
-    type: "POST",
-    data: {
-    service_id: service_id,
-    _token: '{{csrf_token()}}' 
-    },
-    dataType : 'json',
-    success: function(result){
-    $('#room').html('<option value="">Select Room</option>'); 
-    $.each(result.rooms,function(key,value){
-    $("#room").append('<option value="'+value.id+'">'+value.name_room+'</option>');
-    });
-    $('#session').html('<option value="">Select Session</option>'); 
-    }
-    });
-    });    
-    $('#service').on('change', function() {
-    var service_id = this.value;
-    $("#session").html('');
-    $.ajax({
-    url:"{{url('get-session')}}",
-    type: "POST",
-    data: { 
-        service_id: service_id,
-    _token: '{{csrf_token()}}' 
-    },
-    dataType : 'json',
-    success: function(result){
-    $('#session').html('<option value="">Select Session</option>');
-    $('#session').html('<option value="">Select Session</option>');
-
-    $.each(result.sessions,function(key,value){
-    $("#session").append('<option value="'+value.id+'">'+value.name_session+'</option>');
-    });
-    }
-    });
-    });
-    });
-    </script>
 
 
 @endsection
+
+

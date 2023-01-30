@@ -1,8 +1,9 @@
 @extends('layout.masterdash')
 
 @section('content')
-@if(\Illuminate\Support\Facades\Auth::user()->level >=3)
-
+@if(\Illuminate\Support\Facades\Auth::user()->level == 'admin')
+@elseif(\Illuminate\Support\Facades\Auth::user()->level == 'reception')
+@elseif(\Illuminate\Support\Facades\Auth::user()->level == 'doctor')
 {{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
