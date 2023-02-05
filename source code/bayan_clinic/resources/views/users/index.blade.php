@@ -2,9 +2,7 @@
 
 @section('content')
 
-@if(\Illuminate\Support\Facades\Auth::user()->level == 'admin')
-@elseif(\Illuminate\Support\Facades\Auth::user()->level == 'reception')
-@elseif(\Illuminate\Support\Facades\Auth::user()->level == 'doctor')
+@if(\Illuminate\Support\Facades\Auth::user()->level == 'admin'|| 'reception'||'doctor')
 <div class="page-wrapper">
   <!-- ============================================================== -->
   <!-- Bread crumb and right sidebar toggle -->
@@ -54,7 +52,7 @@
       <div class="card">
         <div class="card-header">
             <div class="row">
-                <div class="col col-md-12">
+                {{-- <div class="col col-md-12">
 
                   <form action="{{ route('user') }}" method="POST">
                     @csrf    
@@ -74,7 +72,7 @@
                             
                     
                 </form>
-                </div>
+                </div> --}}
                 
 
               

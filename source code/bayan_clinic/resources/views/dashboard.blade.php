@@ -115,7 +115,83 @@
           
         </div>
     
-    @if(\Illuminate\Support\Facades\Auth::user()->level == 'admin'  || 'reception'||'doctor')
+    @if(\Illuminate\Support\Facades\Auth::user()->level == 'admin' )
+    <div class="card">
+      <div class="card-header">
+          <div class="row">
+              <div class="col col-md-8"><h3><b>Contact</b></h3></div>
+                <div class="col col-md-4">
+              </div>
+              
+          </div>
+      </div>
+      <div class="card-body">
+
+          <table class="table table-striped table-bordered table-dark table-striped table-hover">
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Subject</th>
+                <th >Message</th>
+            </tr>
+            @foreach($contacts as $contact)
+            <tr>
+                <td>{{ ++$i }}</td>
+                <td>{{ $contact->name }}</td>
+                <td>{{ $contact->email }}</td>
+                <td>{{ $contact->phone }}</td>
+                <td>{{ $contact->subject }}</td>
+                <td>{{ $contact->message }}</td>
+            </tr>
+            
+            @endforeach
+        
+        </table>
+        {!! $contacts ->links() !!}
+    </div>
+</div>
+@elseif (\Illuminate\Support\Facades\Auth::user()->level =='reception')
+    <div class="card">
+      <div class="card-header">
+          <div class="row">
+              <div class="col col-md-8"><h3><b>Contact</b></h3></div>
+                <div class="col col-md-4">
+              </div>
+              
+          </div>
+      </div>
+      <div class="card-body">
+
+          <table class="table table-striped table-bordered table-dark table-striped table-hover">
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Subject</th>
+                <th >Message</th>
+            </tr>
+            @foreach($contacts as $contact)
+            <tr>
+                <td>{{ ++$i }}</td>
+                <td>{{ $contact->name }}</td>
+                <td>{{ $contact->email }}</td>
+                <td>{{ $contact->phone }}</td>
+                <td>{{ $contact->subject }}</td>
+                <td>{{ $contact->message }}</td>
+            </tr>
+            
+            @endforeach
+        
+        </table>
+        {!! $contacts ->links() !!}
+    </div>
+</div>
+    @elseif(\Illuminate\Support\Facades\Auth::user()->level == 'doctor')
+
+
 
   <div class="card">
       <div class="card-header">

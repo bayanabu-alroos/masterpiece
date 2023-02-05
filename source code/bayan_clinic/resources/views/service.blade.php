@@ -112,7 +112,6 @@
                         <h2 class="fw-bold text-primary text-uppercase">Our Services</h2>
 
                         <!-- <h5 class="fw-bold text-uppercase"></h5> -->
-                        <h3 class="mb-0">Custom IT Solutions for Your Successful Business</h3>
                     </div>
                 </div>
             </div>

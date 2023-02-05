@@ -2,6 +2,106 @@
 
 @section('content')
 @if(\Illuminate\Support\Facades\Auth::user()->level == 'admin')
+<div class="page-wrapper">
+  <!-- ============================================================== -->
+  <!-- Bread crumb and right sidebar toggle -->
+  <!-- ============================================================== -->
+  <div class="page-breadcrumb">
+    <div class="row">
+      <div class="col-12 d-flex no-block align-items-center">
+        <h4 class="page-title">Create Blog</h4>
+        <div class="ms-auto text-end">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Create Blog
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ============================================================== -->
+  <!-- End Bread crumb and right sidebar toggle -->
+  <!-- ============================================================== -->
+  <!-- ============================================================== -->
+  <!-- Container fluid  -->
+  <!-- ============================================================== -->
+  <div class="container-fluid">
+
+
+
+        <div class="card">
+          <div class="card-body">
+
+            <div class="row mb-3">
+              <div class="col col-md-6"><b><h3>Create New Bloge</h3></b></div>
+
+              <div class="container mt-4">
+
+                  @if ($errors->any())
+                      <div class="alert alert-danger">
+                          <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                          <ul>
+                              @foreach ($errors->all() as $error)
+                                  <li>{{ $error }}</li>
+                              @endforeach
+                          </ul>
+                      </div>
+                  @endif
+
+                  <form class="row g-3 "action="{{ route('blog.store') }}" method="POST" enctype="multipart/form-data">
+                      @csrf
+                      <div class="mb-3 col-md-6">
+                          <label  class="form-label">Title Blog</label>
+                          <input type="text" name="title" class="form-control" placeholder="Enter Title Blog">
+                      </div>
+                      <div class="mb-3 col-md-6"></div>
+
+                      <div class="mb-3 col-md-6">
+                          <label  class="form-label">Article Blog</label>
+                          <input type="text" name="article" class="form-control" placeholder="Enter Article Blog">
+                      </div>
+                      <div class="mb-3 col-md-6"></div>
+
+                      <div class="mb-3 col-md-6">
+                          <label  class="form-label">Detail Blog</label>
+                          <input type="file" name="image" class="form-control" placeholder="image">
+                      </div>
+                      <div class="mb-3 col-md-6"></div>
+
+
+
+                      <div class="mb-3 col-md-6">
+                          <label  class="form-label">Detail Blog</label>
+                          <textarea  name="detail" class="form-control" placeholder="Enter Detail Blog" rows="3"></textarea>
+                      </div>
+
+
+                      
+
+                      <div class="mb-3 col-md-6"></div>
+                      <div class="mb-3 col-md-6">
+                          <button type="submit" class="btn btn-primary mb-3">Save</button>
+                      </div>
+
+                      
+
+                  </form>
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+</div>
 @elseif(\Illuminate\Support\Facades\Auth::user()->level == 'doctor')
 
 

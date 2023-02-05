@@ -139,11 +139,20 @@
                                 <button  type="submit " class="btn btn-info btn-lg text-white">Login </button>
                             </div>
 
+                            
+                            @if (Route::has('register'))
+                            <a class="btn btn-link" href="{{ route('register') }}">
+                                {{ __('Create new account') }}
+                            </a>
+                            @endif
+                            <br>
+
                             @if (Route::has('password.request'))
                             <a class="btn btn-link" href="{{ route('password.request') }}">
                                 {{ __('Forgot Your Password?') }}
                             </a>
                             @endif
+
                     </form>
                 </div>
 

@@ -76,9 +76,9 @@
                     We have the best hair removal and skin care techniques
                 </h5>
                 <br>
-                <a href="http://127.0.0.1:8000/appointment"
+                {{-- <a href="http://127.0.0.1:8000/appointment"
                     class="btn  btn-opacity-75 py-md-3 px-md-5 me-3 animated slideInLeft text-white"
-                    style="background-color:#9b4abb ;">Make Appointment</a>
+                    style="background-color:#9b4abb ;">Make Appointment</a> --}}
                 <a href="http://127.0.0.1:8000/contact"
                     class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact Us</a>
             </div>
@@ -93,9 +93,9 @@
                     We have the best hair removal and skin care techniques
                 </h5>
                 <br>
-                <a href="http://127.0.0.1:8000/appointment"
+                {{-- <a href="http://127.0.0.1:8000/appointment"
                     class="btn  btn-opacity-75 py-md-3 px-md-5 me-3 animated slideInLeft text-white"
-                    style="background-color:#9b4abb ;">Make Appointment</a>
+                    style="background-color:#9b4abb ;">Make Appointment</a> --}}
                 <a href="http://127.0.0.1:8000/contact"
                     class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact Us</a>
             </div>
@@ -110,9 +110,9 @@
                     We have the best hair removal and skin care techniques
                 </h5>
                 <br>
-                <a href="http://127.0.0.1:8000/appointment"
+                {{-- <a href="http://127.0.0.1:8000/appointment"
                     class="btn  btn-opacity-75 py-md-3 px-md-5 me-3 animated slideInLeft text-white"
-                    style="background-color:#9b4abb ;">Make Appointment</a>
+                    style="background-color:#9b4abb ;">Make Appointment</a> --}}
                 <a href="http://127.0.0.1:8000/contact"
                     class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact Us</a>
             </div>

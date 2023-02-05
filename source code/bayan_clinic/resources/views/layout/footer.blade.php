@@ -60,10 +60,7 @@
                             <a class="text-light mb-2" href="http://127.0.0.1:8000/service">
                                 <i class="bi bi-arrow-right  me-2" style="color:#d81a46;"></i>Our Services
                             </a>
-                            <a class="text-light mb-2" href="#">
-                                <i class="bi bi-arrow-right me-2" style="color:#d81a46;"></i>Meet The Team
-                            </a>
-                            <a class="text-light mb-2" href="http://127.0.0.1:8000/bloge">
+                            <a class="text-light mb-2" href="http://127.0.0.1:8000/blogs">
                                 <i class="bi bi-arrow-right me-2" style="color:#d81a46;"></i>Latest Blog
                             </a>
                             <a class="text-light" href="http://127.0.0.1:8000/contact">
@@ -85,10 +82,8 @@
                             <a class="text-light mb-2" href="http://127.0.0.1:8000/service">
                                 <i class="bi bi-arrow-right  me-2" style="color:#d81a46;"></i>Our Services
                             </a>
-                            <a class="text-light mb-2" href="#">
-                                <i class="bi bi-arrow-right me-2" style="color:#d81a46;"></i>Meet The Team
-                            </a>
-                            <a class="text-light mb-2" href="http://127.0.0.1:8000/bloge">
+
+                            <a class="text-light mb-2" href="http://127.0.0.1:8000/blogs">
                                 <i class="bi bi-arrow-right me-2" style="color:#d81a46;"></i>Latest Blog
                             </a>
                             <a class="text-light" href="http://127.0.0.1:8000/contact">

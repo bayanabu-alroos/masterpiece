@@ -68,14 +68,23 @@ Route::get('/dashboard',[ContactUsFormController::class,'index'] )->name('dashbo
 Route::resource('blog', BlogController::class);
 
 
+
+
 Route::resource('users', UserController::class);
-Route::any('/users', [UserController::class, 'index'])->name('user');
+// Route::any('/users', [UserController::class, 'index'])->name('user');
+
 
 
 Route::resource('services', ServiceController::class);
 
 Route::post('store/', [RoomlistingController::class, 'store'])->name('store');
 
+Route::get('/appointment', [RoomlistingController::class,'indexs'] );
+Route::get('/appointments', [RoomlistingController::class,'appointment'] );
+
+Route::delete('/{appointment}',[RoomlistingController::class,'destroy'])->name('destroy');
+
+Route::get('/show_room/{room}/', [RoomlistingController::class, 'show'])->name('show_room');
 
 
 Route::resource('sessions',SessionController::class);
@@ -110,17 +119,13 @@ Route::get('about', [HomeController::class,'show']);
 
 
 
-Route::get('/appointment', [RoomlistingController::class,'indexs'] );
-Route::get('/appointments', [RoomlistingController::class,'appointment'] );
 
-Route::delete('/{appointment}',[RoomlistingController::class,'destroy'])->name('destroy');
 
 
 Route::get('/rooms', [RoomlistingController::class,'index'] )->name('room');
 
 Route::any('/rooms', [RoomlistingController::class, 'index'])->name('room');
 
-Route::get('/show_room/{room}/', [RoomlistingController::class, 'show'])->name('show_room');
 
 
 

@@ -32,7 +32,87 @@
               </li>
 
               @if(\Illuminate\Support\Facades\Auth::user()->level == 'admin')
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link has-arrow waves-effect waves-dark"
+                  href="javascript:void(0)"
+                  aria-expanded="false"
+                  ><i class="mdi mdi-chart-bubble"></i
+                    ><span class="hide-menu"> Servies</span></a
+                >
+                <ul aria-expanded="false" class="collapse first-level">
+                  <li class="sidebar-item">
+                    <a href="http://127.0.0.1:8000/services" class="sidebar-link"
+                      ><i class="fas fa-braille"></i
+                      ><span class="hide-menu">Servies  </span></a
+                    >
+                  </li>
+                  <li class="sidebar-item">
+                    <a href="{{ route('services.create') }}" class="sidebar-link"
+                      ><i class="fas fa-plus-circle"></i
+                      ><span class="hide-menu"> Create Servies  </span></a
+                    >
+                  </li>
+                  
+
+                </ul>
+              </li>
+             
+
+
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link has-arrow waves-effect waves-dark"
+                  href="javascript:void(0)"
+                  aria-expanded="false"
+                  ><i class="me-2 mdi mdi-material-ui"></i
+                    ><span class="hide-menu">Rooms Servies </span></a
+                >
+                <ul aria-expanded="false" class="collapse first-level">
+                  <li class="sidebar-item">
+                    <a href="http://127.0.0.1:8000/rooms_services" class="sidebar-link"
+                      ><i class="me-2 mdi mdi-washing-machine"></i >
+                      <span class="hide-menu">Rooms Servies </span></a
+                    >
+                  </li>
+                  <li class="sidebar-item">
+                    <a href="{{ route('rooms_services.create') }}" class="sidebar-link"
+                      ><i class="fas fa-plus-square"></i>
+                      <span class="hide-menu"> Create Room Servie  </span></a
+                    >
+                  </li>
+                  
+
+                </ul>
+              </li>
+              @endif
               @if(\Illuminate\Support\Facades\Auth::user()->level == 'reception')
+
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="http://127.0.0.1:8000/services"
+                  aria-expanded="false"
+                  ><i class="mdi mdi-chart-bubble"></i
+                    ><span class="hide-menu"> Servies</span></a
+                >
+              </li>
+
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="http://127.0.0.1:8000/rooms_services"
+                  aria-expanded="false"
+                  ><i class="me-2 mdi mdi-washing-machine"></i >
+                    <span class="hide-menu">Rooms Servies </span></a
+                >
+              </li>
+              
+             
+
+
+              
+              @endif
               @if(\Illuminate\Support\Facades\Auth::user()->level == 'doctor')
 
 
@@ -90,15 +170,12 @@
                 </ul>
               </li>
               @endif
-              @endif
-              @endif
+              
 
 
 
 
               @if(\Illuminate\Support\Facades\Auth::user()->level == 'admin' )
-              @if(\Illuminate\Support\Facades\Auth::user()->level == 'doctor')
-
               <li class="sidebar-item">
                 <a
                   class="sidebar-link has-arrow waves-effect waves-dark"
@@ -127,13 +204,56 @@
                 </ul>
               </li>
               @endif
+              @if(\Illuminate\Support\Facades\Auth::user()->level == 'doctor')
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link has-arrow waves-effect waves-dark"
+                  href="javascript:void(0)"
+                  aria-expanded="false"
+                  ><i class="me-2 mdi mdi-bio"></i
+                    ><span class="hide-menu"> Sessions Name</span></a
+                >
+                <ul aria-expanded="false" class="collapse first-level">
+                  <li class="sidebar-item">
+                    <a href="http://127.0.0.1:8000/sessions" class="sidebar-link"
+                      ><i class="fab fa-servicestack"></i
+                        >
+                      <span class="hide-menu"> Sessions Name</span></a
+                    >
+                  </li>
+                  <li class="sidebar-item">
+                    <a href="{{ route('sessions.create') }}" class="sidebar-link"
+                      ><i class="me-2 mdi mdi-book-plus"></i
+                        >
+                      <span class="hide-menu"> Create  Sessions Name  </span></a
+                    >
+                  </li>
+                  
+
+                </ul>
+              </li>
+              
+              
               @endif
+
+              @if(\Illuminate\Support\Facades\Auth::user()->level =='reception')
+        
+
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="http://127.0.0.1:8000/sessions"
+                  aria-expanded="false"
+                  ><i class="me-2 mdi mdi-bio"></i
+                    >
+                  <span class="hide-menu">Sessions Name</span></a
+                >
+              </li>
+                @endif
 
 
 
               @if(\Illuminate\Support\Facades\Auth::user()->level == 'admin')
-              @if(\Illuminate\Support\Facades\Auth::user()->level == 'reception')
-              @if(\Illuminate\Support\Facades\Auth::user()->level == 'doctor')
 
 
                 <li class="sidebar-item">
@@ -162,8 +282,68 @@
                 </li>
 
                 @endif
+
+                
+                @if(\Illuminate\Support\Facades\Auth::user()->level =='reception')
+
+
+                <li class="sidebar-item">
+                  <a
+                    class="sidebar-link has-arrow waves-effect waves-dark"
+                    href="javascript:void(0)"
+                    aria-expanded="false" >
+                    <i class="me-2 mdi mdi-account-multiple-outline"></i >
+                      <span class="hide-menu">Users </span>
+                  </a>
+                  <ul aria-expanded="false" class="collapse first-level">
+                    <li class="sidebar-item">
+                      <a href="http://127.0.0.1:8000/users" class="sidebar-link"
+                        ><i class="me-2 mdi mdi-account-multiple-outline"></i >
+                          <span class="hide-menu"> Users </span></a
+                      >
+                    </li>
+                    <li class="sidebar-item">
+                      <a  href="{{ route('users.create') }}" class="sidebar-link"
+                        ><i class="me-2 mdi mdi-account-multiple-plus"></i >
+                          <span class="hide-menu"> Create User </span></a
+                      >
+                    </li>
+  
+                  </ul>
+                </li>
+
                 @endif
+
+                @if(\Illuminate\Support\Facades\Auth::user()->level == 'doctor')
+
+
+                <li class="sidebar-item">
+                  <a
+                    class="sidebar-link has-arrow waves-effect waves-dark"
+                    href="javascript:void(0)"
+                    aria-expanded="false" >
+                    <i class="me-2 mdi mdi-account-multiple-outline"></i >
+                      <span class="hide-menu">Users </span>
+                  </a>
+                  <ul aria-expanded="false" class="collapse first-level">
+                    <li class="sidebar-item">
+                      <a href="http://127.0.0.1:8000/users" class="sidebar-link"
+                        ><i class="me-2 mdi mdi-account-multiple-outline"></i >
+                          <span class="hide-menu"> Users </span></a
+                      >
+                    </li>
+                    <li class="sidebar-item">
+                      <a  href="{{ route('users.create') }}" class="sidebar-link"
+                        ><i class="me-2 mdi mdi-account-multiple-plus"></i >
+                          <span class="hide-menu"> Create User </span></a
+                      >
+                    </li>
+  
+                  </ul>
+                </li>
+
                 @endif
+
 
 
 
@@ -183,7 +363,29 @@
 
 
                 @if(\Illuminate\Support\Facades\Auth::user()->level == 'admin')
+                <li class="sidebar-item">
+                  <a
+                    class="sidebar-link waves-effect waves-dark sidebar-link"
+                    href="http://127.0.0.1:8000/appointments"
+                    aria-expanded="false"
+                    ><i class="fas fa-calendar-alt"></i>
+                      <span class="hide-menu">Appointment</span></a
+                  >
+                </li>
+
+                @endif
                 @if(\Illuminate\Support\Facades\Auth::user()->level == 'reception')
+                <li class="sidebar-item">
+                  <a
+                    class="sidebar-link waves-effect waves-dark sidebar-link"
+                    href="http://127.0.0.1:8000/appointments"
+                    aria-expanded="false"
+                    ><i class="fas fa-calendar-alt"></i>
+                      <span class="hide-menu">Appointment</span></a
+                  >
+                </li>
+
+                @endif
                 @if(\Illuminate\Support\Facades\Auth::user()->level == 'doctor')
                 <li class="sidebar-item">
                   <a
@@ -196,35 +398,37 @@
                 </li>
 
                 @endif
-                @endif
-                @endif
+              
 
 
-                {{-- @if(\Illuminate\Support\Facades\Auth::user()->level ==2)
 
+                @if(\Illuminate\Support\Facades\Auth::user()->level == 'admin')
                 <li class="sidebar-item">
                   <a
                     class="sidebar-link has-arrow waves-effect waves-dark"
                     href="javascript:void(0)"
-                    aria-expanded="false" >
-                    <i class="me-2 mdi mdi-account-multiple-outline"></i >
-                      <span class="hide-menu">Users </span>
-                  </a>
+                    aria-expanded="false"
+                    ><i class="mdi mdi-receipt"></i
+                    ><span class="hide-menu">Blogs </span></a
+                  >
                   <ul aria-expanded="false" class="collapse first-level">
                     <li class="sidebar-item">
-                      <a href="http://127.0.0.1:8000/users" class="sidebar-link"
-                        ><i class="me-2 mdi mdi-account-multiple-outline"></i >
-                          <span class="hide-menu"> Users </span></a
+                      <a href="http://127.0.0.1:8000/blog" class="sidebar-link"
+                        ><i class="mdi mdi-note-outline"></i
+                        ><span class="hide-menu"> Blogs </span></a
                       >
                     </li>
-
+                    <li class="sidebar-item">
+                      <a href="{{ route('blog.create') }}" class="sidebar-link"
+                        ><i class="mdi mdi-note-plus"></i
+                        ><span class="hide-menu"> Create Blog </span></a
+                      >
+                    </li>
+                    
   
                   </ul>
                 </li>
-
-                @endif --}}
-
-                @if(\Illuminate\Support\Facades\Auth::user()->level == 'admin')
+                @endif
                 @if(\Illuminate\Support\Facades\Auth::user()->level == 'doctor')
 
               <li class="sidebar-item">
@@ -253,17 +457,8 @@
                 </ul>
               </li>
               @endif
-              @endif
 
-              {{-- <li class="sidebar-item">
-                <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="pages-buttons.html"
-                  aria-expanded="false"
-                  ><i class="mdi mdi-relative-scale"></i
-                  ><span class="hide-menu">Buttons</span></a
-                >
-              </li> --}}
+
 
               <li class="sidebar-item">
                 <a
