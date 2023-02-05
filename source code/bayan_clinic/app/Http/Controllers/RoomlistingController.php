@@ -148,7 +148,7 @@ class RoomlistingController extends Controller
             ->join('users', 'appointment.user_id', '=', 'users.id')
             ->join('sessions','appointment.session_id', '=','sessions.id')
             ->join('rooms', 'appointment.room_id' , '=', 'rooms.id')
-            ->select('appointment.*','rooms.name_room','sessions.name_session', 'sessions.cost_session','users.firstname','users.lastname')
+            ->select('appointment.*','rooms.name_room','sessions.name_session', 'sessions.cost_session','users.firstname','users.lastname','users.phone')
             ->get();
 
 
